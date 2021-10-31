@@ -1,3 +1,4 @@
+import { User } from "modules/users/model/User";
 import request from "supertest";
 import { v4 } from "uuid";
 
@@ -113,7 +114,9 @@ describe("[GET] /users", () => {
       email: String(Math.random()),
     });
 
-    const response = await request(app).get("/users").set("user_id", user1.id);
+    const response: request.Response = await request(app)
+      .get("/users")
+      .set("user_id", user1.id);
 
     expect(
       response.body.map((res) => ({
